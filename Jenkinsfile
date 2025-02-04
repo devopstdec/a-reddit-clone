@@ -10,12 +10,12 @@ pipeline {
         RELEASE = "1.0.0"
         DOCKER_USER = "kishore0385"
         DOCKER_PASS = 'dockerhub'
-        IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
+        IMAGE_NAME = "${DOCKER_USER}/${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-	JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
+        JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
     }
     stages {
-        stage('clean workspace') {
+        stage('Clean Workspace') {
             steps {
                 cleanWs()
             }
@@ -45,11 +45,5 @@ pipeline {
                 sh "npm install"
             }
         }
-        stage('TRIVY FS SCAN') {
-            steps {
-                sh "trivy fs . > trivyfs.txt"
-             }
-         
-
-
-
+    } // <- Closing bracket for "stages"
+} // <- Closing bracket for "pipeline"
